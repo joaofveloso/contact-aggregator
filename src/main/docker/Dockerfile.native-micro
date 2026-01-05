@@ -15,7 +15,7 @@
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 -e KENECT_LABS_API_BEARER_TOKEN=J7ybt6jv6pdJ4gyQP9gNonsY quarkus/jobsity
+# docker run -i --rm -p 8080:8080 -e KENECT_LABS_API_BEARER_TOKEN=<token> quarkus/jobsity
 #
 # The `quay.io/quarkus/ubi9-quarkus-micro-image:2.0` base image is based on UBI 9.
 # To use UBI 8, switch to `quay.io/quarkus/quarkus-micro-image:2.0`.
