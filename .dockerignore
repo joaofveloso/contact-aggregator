@@ -1,0 +1,56 @@
+# Environment files
+.env
+.env.*
+
+# Version control
+.git
+.gitignore
+
+# Gradle
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!build/quarkus-app/
+!build/*-runner
+
+# IDE
+.idea
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+.factorypath
+
+# Quarkus
+target/
+
+# Test coverage
+jacoco.exec
+.jacoco-coverage
+build/test-results/
+build/reports/
+
+# Logs
+*.log
+log/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup and temporary files
+*~
+*.bak
+*.orig
+*.rej
+*.tmp
+*.swp
+*.swo
+
+# Documentation (already in repo, exclude from image)
+docs/
+README.md
+.adr/

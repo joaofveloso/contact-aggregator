@@ -1,0 +1,8 @@
+FROM eclipse-temurin:21-jdk-alpine
+WORKDIR /app
+COPY build.gradle.kts settings.gradle.kts gradle.properties ./
+COPY gradlew ./
+RUN chmod +x gradlew
+COPY src ./src
+COPY docs ./docs
+RUN ./gradlew clean build --no-daemon
