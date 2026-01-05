@@ -11,7 +11,7 @@ public class KenectLabsApiConfig {
             defaultValue = "https://candidate-challenge-api-489237493095.us-central1.run.app")
     private String baseUrl;
 
-    @ConfigProperty(name = "kenect.labs.api.bearer-token", defaultValue = "test-token")
+    @ConfigProperty(name = "kenect.labs.api.bearer-token")
     private String bearerToken;
 
     @ConfigProperty(name = "kenect.labs.api.contacts-path", defaultValue = "/api/v1/contacts")

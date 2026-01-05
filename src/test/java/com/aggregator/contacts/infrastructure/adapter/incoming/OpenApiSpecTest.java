@@ -23,7 +23,7 @@ class OpenApiSpecTest {
                 .statusCode(200)
                 .body("openapi", equalTo("3.1.0"))
                 .body("info.title", equalTo("Contacts API Aggregator"))
-                .body("paths.'/contacts'.get.summary", containsString("Retrieve all contacts"));
+                .body("paths.'/v1/contacts'.get.summary", containsString("Retrieve all contacts"));
     }
 
     @Test
@@ -34,7 +34,7 @@ class OpenApiSpecTest {
                 .get("/q/openapi")
                 .then()
                 .statusCode(200)
-                .body("paths.'/contacts'.get.summary", containsString("Retrieve all contacts"))
-                .body("paths.'/contacts'.get.security", equalTo(null));
+                .body("paths.'/v1/contacts'.get.summary", containsString("Retrieve all contacts"))
+                .body("paths.'/v1/contacts'.get.security", equalTo(null));
     }
 }

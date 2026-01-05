@@ -13,12 +13,8 @@ class ContactMapperTest {
 
     @Test
     void shouldMapDtoToDomain() {
-        KenectLabsContactDto dto = new KenectLabsContactDto();
-        dto.setId(1L);
-        dto.setName("John Doe");
-        dto.setEmail("john@example.com");
-        dto.setCreatedAt("2024-01-01T12:00:00Z");
-        dto.setUpdatedAt("2024-01-01T12:00:00Z");
+        KenectLabsContactDto dto = new KenectLabsContactDto(
+                1L, "John Doe", "john@example.com", "2024-01-01T12:00:00Z", "2024-01-01T12:00:00Z");
 
         Contact contact = ContactMapper.INSTANCE.toDomain(dto, SOURCE);
 
@@ -32,12 +28,8 @@ class ContactMapperTest {
 
     @Test
     void shouldHandleNullTimestamps() {
-        KenectLabsContactDto dto = new KenectLabsContactDto();
-        dto.setId(1L);
-        dto.setName("John Doe");
-        dto.setEmail("john@example.com");
-        dto.setCreatedAt(null);
-        dto.setUpdatedAt(null);
+        KenectLabsContactDto dto = new KenectLabsContactDto(
+                1L, "John Doe", "john@example.com", null, null);
 
         assertThatThrownBy(() -> ContactMapper.INSTANCE.toDomain(dto, SOURCE)).isInstanceOf(NullPointerException.class);
     }

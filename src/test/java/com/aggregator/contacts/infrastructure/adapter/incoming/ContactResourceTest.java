@@ -12,7 +12,7 @@ class ContactResourceTest {
     @Test
     void shouldReturnContactsArray() {
         given().when()
-                .get("/contacts")
+                .get("/v1/contacts")
                 .then()
                 .statusCode(200)
                 .contentType("application/json")
@@ -22,7 +22,7 @@ class ContactResourceTest {
     @Test
     void shouldInvalidateCache() {
         given().when()
-                .post("/contacts/invalidate-cache")
+                .post("/v1/contacts/invalidate-cache")
                 .then()
                 .statusCode(200)
                 .contentType("application/json")

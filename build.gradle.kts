@@ -24,6 +24,7 @@ dependencies {
     implementation("io.quarkus:quarkus-smallrye-health")
     implementation("io.quarkus:quarkus-smallrye-fault-tolerance")
     implementation("io.quarkus:quarkus-cache")
+    implementation("io.quarkus:quarkus-hibernate-validator")
 
     // Vert.x WebClient for reactive HTTP
     implementation("io.smallrye.reactive:smallrye-mutiny-vertx-web-client")

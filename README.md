@@ -54,8 +54,8 @@ Access Swagger UI: http://localhost:8080/q/swagger-ui
 
 ```bash
 ./gradlew quarkusBuild -Dquarkus.native.enabled=true -Dquarkus.package.jar.enabled=false
-`docker buildx build --load -f src/main/docker/Dockerfile.native-micro -t contacts-aggregator .
-docker run -d -p 8080:8080 --env-file .env --name contacts-aggregator contacts-aggregator`
+docker buildx build --load -f src/main/docker/Dockerfile.native-micro -t contacts-aggregator .
+docker run -d -p 8080:8080 --env-file .env --name contacts-aggregator contacts-aggregator
 ```
 
 View logs: `docker logs -f contacts-aggregator`
@@ -72,6 +72,48 @@ docker compose up -d --build
 View logs: `docker compose logs -f contacts-aggregator`
 
 Access Swagger UI: http://localhost:8080/q/swagger-ui
+
+## Usage Examples
+
+### Fetch All Contacts
+
+```bash
+curl -X GET http://localhost:8080/v1/contacts
+```
+
+**Response:**
+```json
+{
+  "successfulRecords": 10,
+  "skippedRecords": 0,
+  "successfulPages": 1,
+  "skippedPages": 0,
+  "circuitBreakerTrippedCount": 0,
+  "contacts": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "source": "KENECT_LABS",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    }
+  ]
+}
+```
+
+### Invalidate Cache
+
+```bash
+curl -X POST http://localhost:8080/v1/contacts/invalidate-cache
+```
+
+**Response:**
+```json
+{
+  "message": "Cache invalidated successfully"
+}
+```
 
 ## Architecture
 
@@ -91,8 +133,8 @@ Hexagonal architecture with three layers:
 
 ## API Endpoints
 
-- `GET /contacts` - Fetch all contacts with statistics
-- `POST /contacts/invalidate-cache` - Clear the cache
+- `GET /v1/contacts` - Fetch all contacts with statistics
+- `POST /v1/contacts/invalidate-cache` - Clear the cache
 
 ## Code Quality
 
@@ -104,6 +146,6 @@ Hexagonal architecture with three layers:
 ---
 
 ```bash
-`docker stop contacts-aggregator
-docker rm contacts-aggregator`
+docker stop contacts-aggregator
+docker rm contacts-aggregator
 ```

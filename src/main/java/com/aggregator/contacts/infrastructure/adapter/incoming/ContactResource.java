@@ -18,7 +18,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
 
 @Tag(name = "Contacts", description = "Contact aggregation and retrieval operations")
-@Path("/contacts")
+@Path("/v1/contacts")
 @Produces(MediaType.APPLICATION_JSON)
 public class ContactResource {
 
@@ -28,6 +28,8 @@ public class ContactResource {
     public ContactResource(ContactApplicationService service) {
         this.service = service;
     }
+
+    public record CacheInvalidationResponse(String message) {}
 
     @GET
     @Operation(
@@ -54,12 +56,15 @@ public class ContactResource {
             summary = "Invalidate contact cache",
             description =
                     "Clears the contacts cache, forcing the next fetch to retrieve fresh data from the external API.")
+    @APIResponse(
+            responseCode = "200",
+            description = "Cache invalidated successfully",
+            content =
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = CacheInvalidationResponse.class)))
     public Response invalidateCache() {
         service.invalidateCache();
-        return Response.ok().entity("""
-                {
-                    "message": "Cache invalidated successfully"
-                }
-                """).build();
+        return Response.ok(new CacheInvalidationResponse("Cache invalidated successfully")).build();
     }
 }
